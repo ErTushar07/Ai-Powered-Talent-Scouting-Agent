@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Talent Scouting Agent</title>
+    <meta name="description" content="AI powered talent scouting and engagement agent. Discover matching candidates securely.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="/static/logo.png" alt="Nexus Scout Logo" style="height: 32px; width: 32px; object-fit: contain;">
+                <h1>Nexus Scout</h1>
+            </div>
+            <div class="api-key-container">
+                <input type="password" id="api-key-input" placeholder="Google Gemini API Key">
+                <button id="save-key-btn" class="btn-secondary">Save Key</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="panel">
+                <h2>Job Requirements</h2>
+                <div class="input-group">
+                    <label for="jd-input">Paste Job Description</label>
+                    <textarea id="jd-input" placeholder="e.g. Looking for an experienced backend developer with Python and cloud infrastructure skills..."></textarea>
+                </div>
+                <button id="scout-btn" class="primary-btn">
+                    Find Candidates
+                </button>
+                <div id="scout-loader" class="loader hidden">
+                    <span>Analyzing constraints...</span>
+                </div>
+            </section>
+
+            <section class="panel hidden" id="results-panel">
+                <h2>Candidate Matches</h2>
+                <div id="candidates-list" class="candidates-list">
+                    <!-- Candidates injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="modal hidden" id="chat-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 id="chat-candidate-name">Candidate Name</h3>
+                    <p id="chat-candidate-role" class="candidate-role">Role</p>
+                </div>
+                <div class="badge-muted" id="modal-interest-badge">Interest: 0%</div>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="chat-container" id="chat-messages">
+                <div class="sys-msg">Engage conversationally to assess interest.</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-msg-btn" class="primary-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
