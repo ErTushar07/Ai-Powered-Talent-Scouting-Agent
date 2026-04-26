@@ -143,3 +143,10 @@ Final Score = (0.6 * Match Score) + (0.4 * Interest Score)
 **[3:45 - 4:15] Final Shortlist & Wrap up**
 * **Visual:** Head back to the main UI. Show the final ranking blending Match & Interest. 
 * **Audio:** "Because our formula assigns a 60% weight to Qualifications and a 40% weight to Genuine Interest, we are left with a final, completely actionable shortlist. No more blindly pinging cold leads. Nexus Scout AI delivers interested, highly qualified matches right to the recruiter's desk."
+
+---
+
+## 👨‍💻 Author
+
+**Tusharul Amin**  
+GitHub Repository: [ErTushar07/Ai-Powered-Talent-Scouting-Agent](https://github.com/ErTushar07/Ai-Powered-Talent-Scouting-Agent)
