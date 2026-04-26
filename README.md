@@ -71,8 +71,41 @@ Navigate to `http://localhost:8000` in your browser. (To use the live AI model, 
 # 🏗 Architecture & Scoring Explanation
 
 ## A. Architecture Description
+
+```mermaid
+graph TD
+    %% Define Nodes
+    Recruiter([Recruiter])
+    UI[Frontend: Glassmorphic UI]
+    FastAPI[Backend: FastAPI Server]
+    DB[(Mock JSON DB)]
+    MatchAgent[Gemini: Semantic Match Agent]
+    SimAgent[Gemini: Engagement Simulator]
+    
+    %% Relationships
+    Recruiter -- "Inputs Job Description" --> UI
+    UI -- "POST /api/agents/scout" --> FastAPI
+    FastAPI -- "Fetches Candidate Pool" --> DB
+    FastAPI -- "Sends JD + Pool" --> MatchAgent
+    MatchAgent -- "Returns Match Score (0-100%)" --> FastAPI
+    FastAPI -- "Displays Ranked List" --> UI
+    
+    %% Chat Flow
+    Recruiter -- "Initiates Chat" --> UI
+    UI -- "POST /api/agents/chat" --> FastAPI
+    FastAPI -- "Sends Context & Persona" --> SimAgent
+    SimAgent -- "Returns Chat Reply + Interest Score" --> FastAPI
+    FastAPI -- "Calculates Final Score" --> UI
+    UI -- "Re-Ranks Candidates Live" --> Recruiter
+
+    %% Styling
+    style MatchAgent fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
+    style SimAgent fill:#8b5cf6,stroke:#fff,stroke-width:2px,color:#fff
+    style UI fill:#1e293b,stroke:#fff,color:#fff
+```
+
 1. **Input Layer (JD Input):** A clean REST endpoint intakes unstructured text arrays specifying constraints like role, years, or location.
-2. **Processing Layer (Nexus Engine Engine):**
+2. **Processing Layer (Nexus Engine):**
    * **JD Parsing & Matching:** Cross-references JSON talent pool profiles against the JD requirements using the semantic model. Provide a short explainer output mapping the logic.
    * **Conversation Simulator:** Isolates the candidate's core identity context and triggers a contextual conversation model.
 3. **Output Layer (Ranked Shortlist):** A structured, actionable list containing multi-layered reasoning natively understandable by recruiters.
